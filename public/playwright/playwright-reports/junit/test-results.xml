@@ -1,0 +1,30 @@
+<testsuites id="" name="" tests="2" failures="0" skipped="0" errors="0" time="13.373399">
+<testsuite name="signin.spec.ts" timestamp="2024-01-29T16:56:00.046Z" hostname="mmi" tests="2" failures="0" skipped="0" time="26.258" errors="0">
+<testcase name="Sign In › import wallet 0x012803eC2b239E5A08eCb7209e7AA36CFd703cf0" classname="signin.spec.ts" time="13.145">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-artifacts/signin-Sign-In-import-wallet-0x012803eC2b239E5A08eCb7209e7AA36CFd703cf0-mmi/test-finished-1.png]]
+
+[[ATTACHMENT|../test-artifacts/signin-Sign-In-import-wallet-0x012803eC2b239E5A08eCb7209e7AA36CFd703cf0-mmi/test-finished-2.png]]
+
+[[ATTACHMENT|../test-artifacts/signin-Sign-In-import-wallet-0x012803eC2b239E5A08eCb7209e7AA36CFd703cf0-mmi/test-finished-3.png]]
+
+[[ATTACHMENT|../test-artifacts/signin-Sign-In-import-wallet-0x012803eC2b239E5A08eCb7209e7AA36CFd703cf0-mmi/trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Sign In › import wallet 0x265781701c40E9A8EAB68Fa3cD2B250bc4e0bC72" classname="signin.spec.ts" time="13.113">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-artifacts/signin-Sign-In-import-wallet-0x265781701c40E9A8EAB68Fa3cD2B250bc4e0bC72-mmi/test-finished-1.png]]
+
+[[ATTACHMENT|../test-artifacts/signin-Sign-In-import-wallet-0x265781701c40E9A8EAB68Fa3cD2B250bc4e0bC72-mmi/test-finished-3.png]]
+
+[[ATTACHMENT|../test-artifacts/signin-Sign-In-import-wallet-0x265781701c40E9A8EAB68Fa3cD2B250bc4e0bC72-mmi/test-finished-2.png]]
+
+[[ATTACHMENT|../test-artifacts/signin-Sign-In-import-wallet-0x265781701c40E9A8EAB68Fa3cD2B250bc4e0bC72-mmi/trace.zip]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>

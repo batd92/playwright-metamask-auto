@@ -2,14 +2,14 @@ import type { PlaywrightTestConfig } from '@playwright/test';
 import { devices } from '@playwright/test';
 import dotenv from 'dotenv';
 
-dotenv.config({ path: './test/e2e/mmi/.env' });
+dotenv.config({ path: './src/e2e/mmi/.env' });
 const logOutputFolder = './public/playwright/playwright-reports';
 
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
 const config: PlaywrightTestConfig = {
-  testDir: 'test/e2e/mmi/specs',
+  testDir: 'src/e2e/mmi/specs',
   /* Maximum time one test can run for. */
   timeout: 70 * 1000,
   expect: {
@@ -62,18 +62,11 @@ const config: PlaywrightTestConfig = {
     {
       name: 'mmi',
       testMatch: '**/*.spec.ts',
-      testIgnore: '**/*visual.spec.ts',
+      //testIgnore: '**/*visual.spec.ts',
       use: {
         ...devices['Desktop Chrome'],
       },
-    },
-    {
-      name: 'mmi.visual',
-      testMatch: '**/*visual.spec.ts',
-      use: {
-        ...devices['Desktop Chrome'],
-      },
-    },
+    }
   ],
 
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */
