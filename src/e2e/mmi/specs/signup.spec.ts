@@ -37,7 +37,7 @@ test.describe('sign up', () => {
             // Check network
             const networkPage = new MMINetworkPage(page);
             await networkPage.open();
-            await networkPage.selectNetworkBNBChain();
+            await networkPage.addBNBChain();
         });
     }
 });

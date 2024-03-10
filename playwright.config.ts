@@ -11,9 +11,9 @@ const logOutputFolder = './public/playwright-reports';
 const config: PlaywrightTestConfig = {
   testDir: 'src/e2e/mmi/specs',
   /* Maximum time one test can run for. */
-  timeout: 70 * 2000,
+  timeout: 70 * 1000,
   expect: {
-    timeout: 30 * 2000,
+    timeout: 30 * 1000,
   },
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -61,8 +61,8 @@ const config: PlaywrightTestConfig = {
   projects: [
     {
       name: 'mmi',
-      testMatch: ['**/*.spec.ts', 'starrynift.spec.ts'],
-      testIgnore: ['**/*visual.spec.ts','faucet-beta-4.fuel.network.spec.ts', 'signup.spec.ts',], // ''
+      testMatch: ['**/*.spec.ts', 'holoworldai.spec.ts'],
+      testIgnore: ['**/*visual.spec.ts','faucet-beta-4.fuel.network.spec.ts', 'signup.spec.ts', 'starrynift.spec.ts'], // ''
       use: {
         ...devices['Desktop Chrome'],
       },

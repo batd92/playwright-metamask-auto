@@ -56,7 +56,7 @@ const signInAndConnectDapp = async (page: any, context: any, data: any) => {
 
     const networkPage = new MMINetworkPage(page);
     await networkPage.open();
-    await networkPage.selectNetworkBNBChain();
+    await networkPage.addBNBChain();
 
     const starryNiftPage = new StarryNiftPage(page);
 

@@ -126,5 +126,6 @@ export class MMIMainMenuPage {
 
   async closeSettings() {
     await this.closeSettingsBtn.click();
+    //await this.page.close();
   }
 }

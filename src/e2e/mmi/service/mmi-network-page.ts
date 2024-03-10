@@ -13,7 +13,23 @@ export class MMINetworkPage {
     readonly addNetworkBtn: Locator;
     readonly addBtn: Locator;
     readonly submitBtn: Locator;
-    readonly switchBNBChainBtn: Locator;
+
+    readonly BNBChain: Locator;
+    readonly OP_BNBChain: Locator;
+
+    // network manually
+    readonly loadNetwork: Locator;
+    readonly btnAddNetwordManually: Locator;
+    readonly name: Locator;
+    readonly rpc: Locator;
+    readonly chainId: Locator;
+    readonly symbol: Locator;
+    readonly explorer: Locator;
+    readonly save: Locator;
+    readonly approve: Locator;
+    readonly switchNetwork: Locator;
+    readonly done: Locator;
+
     readonly doneBtn: Locator;
 
     constructor(page: Page) {
@@ -27,8 +43,26 @@ export class MMINetworkPage {
         this.addNetworkBtn = page.locator('button:has-text("Add network")');
         this.addBtn = page.locator('//*[@id="app-content"]/div/div[3]/div/div[2]/div[2]/div/div[2]/div[3]/div[2]/button');
         this.submitBtn = page.locator('//*[@id="popover-content"]/div/div/section/div/div/div[2]/div/button[2]');
-        this.switchBNBChainBtn = page.locator(`//*[@id="popover-content"]/div/div/section/div[2]/div/button[1]/h6`);
+
+        // index network
+        this.BNBChain = page.locator(`//*[@id="popover-content"]/div/div/section/div[2]/div/button[1]/h6`);
+        this.OP_BNBChain = page.locator(`//*[@id="popover-content"]/div/div/section/div[2]/div/button[1]/h6`);
+
         this.doneBtn = page.locator(`//*[@id="popover-content"]/div/div/section/div[3]/button`);
+
+        // Add network manually
+        this.loadNetwork = page.locator('//*[@id="app-content"]/div/div[2]/div/div[1]/button');
+        this.btnAddNetwordManually = page.getByTestId('add-network-manually');
+        this.name = page.locator('//*[@id="app-content"]/div/div[3]/div/div[2]/div[2]/div/div[2]/div/div[2]/div[1]/label/input');
+        this.rpc = page.locator('//*[@id="app-content"]/div/div[3]/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/label/input');
+        this.chainId = page.locator('//*[@id="app-content"]/div/div[3]/div/div[2]/div[2]/div/div[2]/div/div[2]/div[3]/label/input');
+        this.symbol = page.locator('//*[@id="app-content"]/div/div[3]/div/div[2]/div[2]/div/div[2]/div/div[2]/div[4]/div/input');
+        this.explorer = page.locator('//*[@id="app-content"]/div/div[3]/div/div[2]/div[2]/div/div[2]/div/div[2]/div[5]/label/input');
+        this.save = page.locator('//*[@id="app-content"]/div/div[3]/div/div[2]/div[2]/div/div[2]/div/div[3]/button[2]');
+        this.approve = page.getByTestId('confirmation-submit-button')
+        this.switchNetwork = page.locator('//*[@id="popover-content"]/div/div/section/div[2]/div/button[1]/h6');
+        this.done = page.locator('//*[@id="popover-content"]/div[2]/div/section/div[3]/button');
+        
     }
 
 
@@ -42,13 +76,33 @@ export class MMINetworkPage {
         await this.closeSettingsBtn.click();
     }
 
-    async selectNetworkBNBChain() {
+    async addBNBChain() {
         await this.addNetworkBtn.click();
         await this.addBtn.click();
         await this.submitBtn.click();
-        await this.switchBNBChainBtn.click();
+        await this.BNBChain.click();
         await this.doneBtn.click();
     }
+
+    async addNetwork(networkOptions) {
+        if (networkOptions) {
+            //await this.loadNetwork.click();
+            await this.addNetworkBtn.click();
+            await this.btnAddNetwordManually.click();
+    
+            await this.name.fill(networkOptions.name);
+            await this.rpc.fill(networkOptions.rpc);
+            await this.chainId.fill(networkOptions.chainId);
+            await this.symbol.fill(networkOptions.symbol);
+            await this.explorer.fill(networkOptions.explorer);
+
+            await this.save.click();
+            //await this.switchNetwork.click();
+            
+            await this.done.click();
+        }
+    }
+
 
     async close() {
         await this.page.close();
