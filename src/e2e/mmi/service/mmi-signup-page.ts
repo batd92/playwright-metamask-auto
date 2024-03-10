@@ -1,6 +1,5 @@
 import { type Locator, type Page } from '@playwright/test';
-import { readFileSync, writeFileSync, readFilesInDirectory } from '../helpers/file';
-import path from 'path';
+import { writeFileSync, getDay } from '../helpers/file';
 require('dotenv').config();
 
 export class MMISignUpPage {
@@ -34,6 +33,11 @@ export class MMISignUpPage {
     readonly btnCopyAddress: Locator;
     readonly btnImportWallet: Locator;
     readonly mainMenuBtn: Locator;
+
+    readonly btnCreateAccount: Locator;
+    readonly btnAddAccount: Locator;
+    readonly btnAdd: Locator;
+    readonly btnCreate: Locator;
 
     constructor(page: Page, extensionId: string) {
         this.page = page;
@@ -73,22 +77,56 @@ export class MMISignUpPage {
         this.btnRecoveryPhraseConfirm = page.getByTestId('recovery-phrase-confirm');
         this.btnPopoverClose = page.getByTestId('popover-close');
         this.btnCopyAddress = page.getByTestId('address-copy-button-text');
+
+        // new account
+
+        this.btnCreateAccount = page.locator('//*[@id="app-content"]/div/div[2]/div/button/span[1]/span');
+        this.btnAddAccount = page.getByTestId('multichain-account-menu-popover-action-button');
+        this.btnAdd = page.getByTestId('multichain-account-menu-popover-add-account');
+        this.btnCreate = page.locator('body > div.mm-modal > div:nth-child(3) > div > section > div.mm-box.mm-box--padding-right-4.mm-box--padding-bottom-4.mm-box--padding-left-4 > form > div.mm-box.mm-box--margin-top-6.mm-box--display-flex.mm-box--gap-2 > button.mm-box.mm-text.mm-button-base.mm-button-base--size-md.mm-button-base--block.mm-button-primary.mm-text--body-md-medium.mm-box--padding-0.mm-box--padding-right-4.mm-box--padding-left-4.mm-box--display-inline-flex.mm-box--justify-content-center.mm-box--align-items-center.mm-box--color-primary-inverse.mm-box--background-color-primary-default.mm-box--rounded-pill')
+
     }
 
     async goto() {
-        await this.page.goto(`chrome-extension://${this.extensionId}/home.html`);
+        await this.page.goto(`chrome-extension://${this.extensionId}/home.html`, { waitUntil: 'load' });
     }
 
     /**
      * Export
      */
     async signUp() {
+        let address = [];
         await this.start();
         await this.makePassword();
         const phrase = await this.makePhrase();
         await this.done();
-        await this.save(phrase);
+        await this.btnCopyAddress.click();
+        // https://github.com/LavaMoat/LavaMoat/pull/360
+        const _address = await this.page.evaluate(() => navigator.clipboard.readText());
+        address.push(_address);
+
+        for (let index = 0; index < 1; index++) {
+            const addressTmp = await this.newAccount();
+            address.push(addressTmp);
+        }
+
+        await this.save(_address, {
+            address,
+            phrase
+        });
+
     }
+    async newAccount() {
+        await this.btnCreateAccount.click();
+        await this.btnAddAccount.click();
+        await this.btnAdd.click();
+        await this.btnCreate.click();
+        await this.btnCopyAddress.click();
+        // https://github.com/LavaMoat/LavaMoat/pull/360
+        const _address = await this.page.evaluate(() => navigator.clipboard.readText());
+        return _address;
+    }
+
 
     /**
      * Import
@@ -101,7 +139,7 @@ export class MMISignUpPage {
         if (data) {
             await this.startImport();
 
-            const seeds = data.phrases;
+            const seeds = data?.phrase || [];
             for (const [index, element] of (seeds as string[]).entries()) {
                 await this.page
                     .locator(`data-testid=import-srp__srp-word-${index}`)
@@ -112,6 +150,9 @@ export class MMISignUpPage {
             await this.password();
             await this.importBtn.click();
             await this.done();
+
+            const day = getDay();
+            await this.save(data.address[0], Object.assign(data, { network: [...new Set([...(data?.network || []), 'BNB Chain'])], activeDay: day }));
         }
     }
 
@@ -152,17 +193,8 @@ export class MMISignUpPage {
         return phrases;
     }
 
-    private async save(phrases: string[]) {
-        await this.btnCopyAddress.click();
-        // https://github.com/LavaMoat/LavaMoat/pull/360
-        const address = await this.page.evaluate(() => navigator.clipboard.readText());
-        console.log('address wallet:', address);
-
-        const pathFile = path.resolve(`src/storage/${address}.json`);
-        await writeFileSync(pathFile, JSON.stringify({
-            address,
-            phrases
-        }));
+    private async save(address: string, contents: any) {
+        writeFileSync(address, JSON.stringify(contents), false);
     }
 
     private async password() {
@@ -195,5 +227,5 @@ export class MMISignUpPage {
             name: /continue metamask institutional onboarding/iu,
           })
           .click();
-      }
+    }
 }

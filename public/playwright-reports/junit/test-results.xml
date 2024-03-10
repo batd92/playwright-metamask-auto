@@ -1,0 +1,60 @@
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="48.203452">
+<testsuite name="starrynift.spec.ts" timestamp="2024-03-09T06:51:12.658Z" hostname="mmi" tests="1" failures="0" skipped="0" time="47.946" errors="0">
+<testcase name="sign in and connect dapp › [starrynift.art] _ 0x78313c3BaCCa4487209cbE5EE6B056fe4121Ac97" classname="starrynift.spec.ts" time="47.946">
+<system-out>
+<![CDATA[locator.click: Target page, context or browser has been closed
+Call log:
+  [2m- waiting for getByTestId('page-container-footer-next')[22m
+
+    at StarryNiftPage.connectMMByReferralCode [90m(/Volumes/Workplaces/forkSLPlaywright/[39msrc/e2e/mmi/service/mmi-starrynift-page.ts:72:68[90m)[39m
+    at signInAndConnectDapp [90m(/Volumes/Workplaces/forkSLPlaywright/[39msrc/e2e/mmi/specs/starrynift.spec.ts:66:5[90m)[39m
+    at [90m/Volumes/Workplaces/forkSLPlaywright/[39msrc/e2e/mmi/specs/starrynift.spec.ts:16:17 {
+  [[32mSymbol(step)[39m]: {
+    stepId: [32m'pw:api@59'[39m,
+    location: {
+      file: [32m'/Volumes/Workplaces/forkSLPlaywright/src/e2e/mmi/service/mmi-starrynift-page.ts'[39m,
+      line: [33m72[39m,
+      column: [33m68[39m,
+      function: [32m'StarryNiftPage.connectMMByReferralCode'[39m
+    },
+    category: [32m'pw:api'[39m,
+    title: [32m"locator.getByTestId('page-container-footer-next').click"[39m,
+    apiName: [32m'locator.click'[39m,
+    params: {
+      selector: [32m'internal:testid=[data-testid="page-container-footer-next"s]'[39m,
+      strict: [33mtrue[39m
+    },
+    wallTime: [33m1709967108066[39m,
+    laxParent: [33mfalse[39m,
+    boxedStack: [90mundefined[39m,
+    steps: [],
+    complete: [36m[Function: complete][39m,
+    endWallTime: [33m1709967108093[39m,
+    error: {
+      message: [32m'Error: locator.click: Target page, context or browser has been closed\n'[39m +
+        [32m'Call log:\n'[39m +
+        [32m"  \x1B[2m- waiting for getByTestId('page-container-footer-next')\x1B[22m\n"[39m,
+      stack: [32m'Error: locator.click: Target page, context or browser has been closed\n'[39m +
+        [32m'Call log:\n'[39m +
+        [32m"  \x1B[2m- waiting for getByTestId('page-container-footer-next')\x1B[22m\n"[39m +
+        [32m'\n'[39m +
+        [32m'    at StarryNiftPage.connectMMByReferralCode (/Volumes/Workplaces/forkSLPlaywright/src/e2e/mmi/service/mmi-starrynift-page.ts:72:68)\n'[39m +
+        [32m'    at signInAndConnectDapp (/Volumes/Workplaces/forkSLPlaywright/src/e2e/mmi/specs/starrynift.spec.ts:66:5)\n'[39m +
+        [32m'    at /Volumes/Workplaces/forkSLPlaywright/src/e2e/mmi/specs/starrynift.spec.ts:16:17'[39m
+    }
+  }
+}
+Done !!!
+
+[[ATTACHMENT|../test-artifacts/starrynift-sign-in-and-connect-dapp-starrynift-art-0x78313c3BaCCa4487209cbE5EE6B056fe4121Ac97-mmi/test-finished-3.png]]
+
+[[ATTACHMENT|../test-artifacts/starrynift-sign-in-and-connect-dapp-starrynift-art-0x78313c3BaCCa4487209cbE5EE6B056fe4121Ac97-mmi/test-finished-1.png]]
+
+[[ATTACHMENT|../test-artifacts/starrynift-sign-in-and-connect-dapp-starrynift-art-0x78313c3BaCCa4487209cbE5EE6B056fe4121Ac97-mmi/test-finished-2.png]]
+
+[[ATTACHMENT|../test-artifacts/starrynift-sign-in-and-connect-dapp-starrynift-art-0x78313c3BaCCa4487209cbE5EE6B056fe4121Ac97-mmi/trace.zip]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>

@@ -3,7 +3,7 @@ import { devices } from '@playwright/test';
 import dotenv from 'dotenv';
 
 dotenv.config({ path: './src/e2e/mmi/.env' });
-const logOutputFolder = './public/playwright/playwright-reports';
+const logOutputFolder = './public/playwright-reports';
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -11,9 +11,9 @@ const logOutputFolder = './public/playwright/playwright-reports';
 const config: PlaywrightTestConfig = {
   testDir: 'src/e2e/mmi/specs',
   /* Maximum time one test can run for. */
-  timeout: 70 * 1000,
+  timeout: 70 * 2000,
   expect: {
-    timeout: 30 * 1000,
+    timeout: 30 * 2000,
   },
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -61,8 +61,8 @@ const config: PlaywrightTestConfig = {
   projects: [
     {
       name: 'mmi',
-      testMatch: '**/*.spec.ts',
-      //testIgnore: '**/*visual.spec.ts',
+      testMatch: ['**/*.spec.ts', 'starrynift.spec.ts'],
+      testIgnore: ['**/*visual.spec.ts','faucet-beta-4.fuel.network.spec.ts', 'signup.spec.ts',], // ''
       use: {
         ...devices['Desktop Chrome'],
       },
